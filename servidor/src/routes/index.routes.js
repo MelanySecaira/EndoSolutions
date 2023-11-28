@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import personaRouter from "./persona.routes.js";
+import especialidadRouter from "./especialidad.routes.js";
 // import especialidadRouter from "./especialidad.routes.js";
 // import medicoRouter from "./";
 
@@ -15,7 +16,7 @@ router.get("/info", (req, res, next) => {
   });
 
 router.use("/persona", personaRouter);
-// router.use("/especialidad", especialidadRouter);
+router.use("/especialidad", especialidadRouter);
 // router.use("/medico", medicoRouter);
 
 export default router;
