@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import { Medico } from "./medico.js";
 
 export const Persona = sequelize.define('tb_persona',{
     id_per_persona:{
@@ -45,16 +46,10 @@ export const Persona = sequelize.define('tb_persona',{
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    // dt_per_fecha_registro:{
-    //     type: DataTypes.DATE,
-    //     allowNull: false
-    // },
-    // dt_per_fecha_modificacion:{
-    //     type: DataTypes.DATE,
-    //     allowNull: false  //
-    // }
-    
 },{
-    // timestamps: false,
-    freezeTableName: true
 });
+
+// Persona.hasOne(Medico, { foreignKey: 'id_med_medico', sourceKey: 'id_per_persona' });
+// Medico.belongsTo(Persona, { foreignKey: 'id_per_medico' });
+// Persona.hasOne(Medico,{foreignKey: 'id_med_medico',targetKey: 'id_per_persona'});
+// Medico.belongsTo(Persona,{foreignKey: 'id_per_persona',targetKey: 'id_med_medico'});
