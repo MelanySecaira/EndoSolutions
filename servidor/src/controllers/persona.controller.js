@@ -1,5 +1,6 @@
 import { Persona } from "../models/persona.js";
 import { Medico } from "../models/medico.js";
+import { Especialidad } from "../models/especialidad.js";
 import { paginarDatos } from "../utils/paginacion.utils.js";
 
 
@@ -195,6 +196,27 @@ export const createPersona = async (req, res) => {
             });
         }
 
+        //buscar si existe especialidad con el id proporcionado
+        const especialidad = await Especialidad.findByPk(especialidadId);
+        if (!especialidad) {
+            // Si no existe una especialidad con el id proporcionado, responder con un mensaje de error
+            return res.status(400).json({
+                status: false,
+                message: "No existe una especialidad con el id proporcionado",
+                body: [],
+            });
+        }
+
+
+        if (tipo === 'Médico' && !especialidadId) {
+            // Si el tipo de persona es médico, pero no se proporciona una especialidad, responder con un mensaje de error
+            return res.status(400).json({
+                status: false,
+                message: "Debe proporcionar una especialidad para el médico",
+                body: [],
+            });
+        }
+
         // Si no hay conflictos, crear la persona utilizando el modelo Persona
         let persona = await Persona.create({
             str_per_nombre: nombre,
@@ -236,7 +258,16 @@ export const createPersona = async (req, res) => {
                     message: "Médico creado exitosamente",
                     body: personaMedicoInfo,
                 });
-            }else{
+            }
+            // if(tipo === 'Paciente'){
+            //     return res.json({
+            //         status: true,
+            //         message: "Paciente creado exitosamente",
+            //         body: persona,
+            //     });
+            
+            // }
+            else{
                 return res.json({
                     status: true,
                     message: "Persona creada exitosamente",
