@@ -3,7 +3,7 @@ import { sequelize } from "../database/database.js";
 
 export const Paciente = sequelize.define('tb_paciente',{
     id_pac_paciente:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true
     },
