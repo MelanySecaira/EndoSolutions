@@ -1,7 +1,15 @@
-import Sequelize from 'sequelize';
+import { Sequelize } from 'sequelize';
+import variableConfig from "../config/variables.config.js"
 
-export const sequelize = new Sequelize("db_endosolutions", "postgres", "secaira", {
-    host: "localhost",
-    dialect: "postgres",
-    logging: false,
-})
+const sequelize = new Sequelize(
+    variableConfig.dbDatabase,
+    variableConfig.dbUser,
+    variableConfig.dbPassword,
+    {
+        host: variableConfig.dbServer,
+        dialect: variableConfig.dbDialect,
+        port: variableConfig.dbPort,
+    }
+)
+
+export default sequelize;

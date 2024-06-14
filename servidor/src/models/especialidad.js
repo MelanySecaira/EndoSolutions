@@ -1,21 +1,21 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../database/database.js";
+import sequelize from "../database/database.js";
 
-export const Especialidad = sequelize.define('tb_especialidad',{
-    id_esp_especialidad:{
+export const Especialidad = sequelize.define('tb_especialidad', {
+    id_esp_especialidad: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    str_esp_nombre:{
+    str_esp_nombre: {
         type: DataTypes.STRING(100),
         allowNull: false
     },
-    str_esp_descripcion:{
+    str_esp_descripcion: {
         type: DataTypes.STRING(200),
         allowNull: false
     },
-    str_esp_estado:{
+    str_esp_estado: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
@@ -27,8 +27,8 @@ export const Especialidad = sequelize.define('tb_especialidad',{
     //     type: DataTypes.DATE,
     //     allowNull: false  //
     // }
-    
-},{
+
+}, {
     // timestamps: false,
     freezeTableName: true
 });
